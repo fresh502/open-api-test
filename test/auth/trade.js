@@ -25,7 +25,7 @@ describe('Trades', () => {
       .set('NONCE', nonce)
       .expect(200)
       .then(({ body }) => {
-        expect(body).to.be.an('array').with.lengthOf(limit)
+        expect(body.length).to.be.below(limit + 1)
         body.forEach(trade => {
           expect(trade).to.have.property('id').that.is.a('number')
           expect(trade).to.have.property('orderId').that.is.a('number')
@@ -58,7 +58,7 @@ describe('Trades', () => {
   //     .query({ limit })
   //     .expect(200)
   //     .then(({ body }) => {
-  //       expect(body).to.be.an('array').with.lengthOf(limit)
+  //       expect(body.length).to.be.below(limit + 1)
   //       body.forEach(trade => {
   //         expect(trade).to.have.property('id').that.is.a('number')
   //         expect(trade).to.have.property('orderId').that.is.a('number')
